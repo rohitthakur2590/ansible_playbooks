@@ -1,0 +1,2 @@
+Run Unit Test
+  - ansible-test units tests/unit/modules/network/junos/test_junos_bgp_global.py  --python 3.6 

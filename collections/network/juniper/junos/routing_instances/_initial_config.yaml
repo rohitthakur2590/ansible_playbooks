@@ -1,0 +1,12 @@
+---
+- name: Initial Configuration
+  hosts: junos
+  collections:
+    - junipernetworks.junos
+  
+  tasks:
+    - name: Configure policy-options w.r.t routing-instances
+      junipernetworks.junos.junos_config:
+        lines:
+          - set policy-options policy-statement test-policy term t1 then reject
+          - set policy-options policy-statement test-policy-1 term t1 then reject

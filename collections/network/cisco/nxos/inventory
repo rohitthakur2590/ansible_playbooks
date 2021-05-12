@@ -1,0 +1,15 @@
+[nxos-lab]
+10.0.149.22 
+# 10.0.149.22
+# 10.8.38.73
+
+
+[nxos-lab:vars]
+ansible_network_os=cisco.nxos.nxos
+# ansible_ssh_user=ansible
+# ansible_ssh_pass=ansible
+ansible_ssh_user=rthakur
+ansible_ssh_private_key_file=/home/rothakur/.ssh/id_rsa.pub 
+ansible_ssh_port=8022
+ansible_connection=ansible.netcommon.network_cli
+# ansible_connection=ansible.netcommon.netconf

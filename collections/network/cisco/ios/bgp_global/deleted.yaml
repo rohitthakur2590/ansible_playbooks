@@ -1,0 +1,15 @@
+---
+- name: IOS_BGP DELETE OPERATION
+  hosts: ios-lab
+  collections:
+    - cisco.ios.ios
+ 
+  tasks:
+    - name: Delete global BGP with bgp_global
+      cisco.ios.ios_bgp_global:
+        state: deleted
+                
+                
+
+      
+          

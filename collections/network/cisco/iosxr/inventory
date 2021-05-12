@@ -1,0 +1,9 @@
+[iosxr-lab]
+10.8.38.69
+
+[iosxr-lab:vars]
+ansible_network_os=cisco.iosxr.iosxr
+ansible_ssh_user=ansible
+ansible_ssh_pass=ansible
+ansible_connection=ansible.netcommon.network_cli
+# ansible_connection=ansible.netcommon.netconf

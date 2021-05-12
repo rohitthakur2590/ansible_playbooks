@@ -1,0 +1,29 @@
+---
+- name: junos_routing_instance Overridden Operation
+  hosts: junos
+  collections:
+    - junipernetworks.junos
+
+  tasks:
+    - name: Override routing instance running configuration
+      junos_routing_instances:
+        config:
+          - name: "test"
+            type: "vrf"
+            route_distinguisher: "10.58.255.1:37"
+            vrf_imports:
+              - "test-policy"
+            vrf_exports:
+              - "test-policy"            
+              - "test-policy-1"
+            interfaces:
+              - name: "sp-0/0/0.0"
+              - name: "gr-0/0/0.0"
+            connector_id_advertise: true
+          - name: "forwardinst"
+            type: "forwarding"
+            description: "Configured by Ansible Content Team"
+          - name: "vtest1"
+            type: "virtual-router"
+
+        state: overridden

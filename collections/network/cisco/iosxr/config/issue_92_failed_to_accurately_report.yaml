@@ -1,0 +1,36 @@
+---
+- name: "https://github.com/ansible-collections/cisco.iosxr/issues/92"
+  hosts: iosxr-lab
+  collections:
+    - cisco.iosxr
+
+  tasks:
+    - name: Assert accurately report configuration failure during pseudo-atomic operation
+      register: result
+      ignore_errors: true
+      cisco.iosxr.iosxr_config:
+        lines:
+          - router bgp 65111
+          - neighbor 10.1.1.1
+          - update-source Loopback0
+
+    - name: Print result
+      debug:
+        msg: "{{ result }}"
+
+    - assert:
+        that:
+          - result.changed == false
+          - result.failed == true
+
+    - name: Run show configuration failed
+      register: result
+      cisco.iosxr.iosxr_config:
+        lines:
+          - show configuration failed
+
+    - assert:
+        that:
+          # - result.changed == false
+          - result.failed == false
+      

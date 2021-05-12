@@ -1,0 +1,512 @@
+---
+- name: BGP address family Unit test 001
+  hosts: junos
+  collections:
+    - junipernetworks.junos
+  
+  tasks:
+
+    # - name: test_junos_bgp_address_family_config_001
+    #   junos_bgp_address_family:
+    #     config:
+    #       address_family:
+    #         - afi: 'evpn'
+    #           af_type:
+    #             - type: 'signaling'
+    #               set: true
+    #     state: merged
+    #--------------------------------------------------------------------------------------------
+    #--------------------------------------------------------------------------------------------
+    # - name: test_junos_bgp_address_family_config_002
+    #   junos_bgp_address_family:
+    #     config:
+    #       address_family:
+    #         - afi: 'evpn'
+    #           af_type:
+    #             - type: 'signaling'
+    #               accepted_prefix_limit:
+    #                 maximum: 20
+    #                 limit_threshold: 98
+    #                 idle_timeout_value: 2001
+    #                 forever: true           
+    #     state: merged
+    #--------------------------------------------------------------------------------------------
+    #--------------------------------------------------------------------------------------------
+    # - name: test_junos_bgp_address_family_config_002_001
+    #   junos_bgp_address_family:
+    #     config:
+    #       address_family:
+    #         - afi: 'evpn'
+    #           af_type:
+    #             - type: 'signaling'
+    #               accepted_prefix_limit:
+    #                 maximum: 20
+    #                 limit_threshold: 98
+    #                 forever: true           
+    #     state: merged
+    #--------------------------------------------------------------------------------------------
+    #-----------------------------------------TODO-----------------------------------------------
+    # - name: test_junos_bgp_address_family_config_003
+    #   junos_bgp_address_family:
+    #     config:
+    #       address_family:
+    #         - afi: 'evpn'
+    #           af_type:
+    #             - type: 'signaling'
+    #               add_path:
+    #                 receive: true
+    #                 send:
+    #                   multipath: true
+    #                   include_backup_path: 1
+    #                   path_count: 10
+    #                   prefix_policy: "customer65443"
+    #                   path_selection_mode:
+    #                     all_paths: true
+    #                     equal_cost_paths: true
+    #     state: merged
+    #--------------------------------------------------------------------------------------------
+    #--------------------------------------------------------------------------------------------
+    # - name: test_junos_bgp_address_family_config_004
+    #   junos_bgp_address_family:
+    #     config:
+    #       address_family:
+    #         - afi: 'evpn'
+    #           af_type:
+    #             - type: 'signaling'
+    #               aggregate_label:
+    #                 set: true
+    #                 community: "cuastomerapn1"
+    #     state: rendered
+    #--------------------------------------------------------------------------------------------
+    #--------------------------------------------------------------------------------------------
+    # - name: test_junos_bgp_address_family_config_005
+    #   junos_bgp_address_family:
+    #     config:
+    #       address_family:
+    #         - afi: 'inet6'
+    #           af_type:
+    #             - type: 'labeled-unicast'
+    #               aigp:
+    #                 # set: true
+    #                 disable: true
+    #     state: merged
+    #--------------------------------------------------------------------------------------------
+    #--------------------------------------------------------------------------------------------
+    # - name: test_junos_bgp_address_family_config_006
+    #   junos_bgp_address_family:
+    #     config:
+    #       address_family:
+    #         - afi: 'inet6'
+    #           af_type:
+    #             - type: 'labeled-unicast'
+    #               damping: true
+    #     state: merged
+    #--------------------------------------------------------------------------------------------
+    #--------------------------------------------------------------------------------------------
+    # - name: test_junos_bgp_address_family_config_007
+    #   junos_bgp_address_family:
+    #     config:
+    #       address_family:
+    #         - afi: 'inet6'
+    #           af_type:
+    #             - type: 'labeled-unicast'
+    #               defer_initial_multipath_build:
+    #                 # set: true
+    #                 maximum_delay: 1200
+    #     state: merged
+    #--------------------------------------------------------------------------------------------
+    #--------------------------------------------------------------------------------------------
+    # - name: test_junos_bgp_address_family_config_008
+    #   junos_bgp_address_family:
+    #     config:
+    #       address_family:
+    #         - afi: 'inet6'
+    #           af_type:
+    #             - type: 'labeled-unicast'
+    #               delay_route_advertisements:
+    #                 set: true
+    #                 max_delay_route_age: 12000
+    #                 max_delay_routing_uptime: 12000
+    #                 min_delay_inbound_convergence: 8000
+    #                 min_delay_routing_uptime: 8000
+    #     state: merged
+    #--------------------------------------------------------------------------------------------
+    #-----------------------------------------TODO-------------------------------------------------
+    # - name: test_junos_bgp_address_family_config_009
+    #   junos_bgp_address_family:
+    #     config:
+    #       address_family:
+    #         - afi: 'inet'
+    #           af_type:
+    #             - type: 'labeled-unicast'
+    #               entropy_label:
+    #                 set: true
+    #                 no_next_hop_validation: true
+    #                 #import= "custom1"
+    #     state: merged
+    #--------------------------------------------------------------------------------------------
+    #-----------------------------------------TODO-------------------------------------------------
+    # - name: test_junos_bgp_address_family_config_010
+    #   junos_bgp_address_family:
+    #     config:
+    #       address_family:
+    #         - afi: 'inet'
+    #           af_type:
+    #             - type: 'labeled-unicast'
+    #               explicit_null:
+    #                 set: true
+    #                 connected_only: true
+    #     state: merged
+    #--------------------------------------------------------------------------------------------
+    #-----------------------------------------TODO-------------------------------------------------
+    # - name: test_junos_bgp_address_family_config_011
+    #   junos_bgp_address_family:
+    #     config:
+    #       address_family:
+    #         - afi: 'inet'
+    #           af_type:
+    #             - type: 'unicast'
+    #               extended_nexthop: true
+    #     state: merged
+    #--------------------------------------------------------------------------------------------
+    #--------------------------------------------------------------------------------------------
+    # - name: test_junos_bgp_address_family_config_012
+    #   junos_bgp_address_family:
+    #     config:
+    #       address_family:
+    #         - afi: 'inet6'
+    #           af_type:
+    #             - type: 'unicast'
+    #               extended_nexthop_color: true
+    #     state: merged
+    #--------------------------------------------------------------------------------------------
+    #--------------------------------------------------------------------------------------------
+    # - name: test_junos_bgp_address_family_config_013_001
+    #   junos_bgp_address_family:
+    #     config:
+    #       address_family:
+    #         - afi: 'inet'
+    #           af_type:
+    #             - type: 'unicast'
+    #               graceful_restart_forwarding_state_bit: 'set'
+    #     state: merged
+    #--------------------------------------------------------------------------------------------
+    #--------------------------------------------------------------------------------------------
+    # - name: test_junos_bgp_address_family_config_014
+    #   junos_bgp_address_family:
+    #     config:
+    #       address_family:
+    #         - afi: 'inet'
+    #           af_type:
+    #             - type: 'unicast'
+    #               local_ipv4_address: '11.11.11.11'
+    #     state: merged
+    #--------------------------------------------------------------------------------------------
+    #--------------------------------------------------------------------------------------------
+    # - name: test_junos_bgp_address_family_config_015
+    #   junos_bgp_address_family:
+    #     config:
+    #       address_family:
+    #         - afi: 'inet'
+    #           af_type:
+    #             - type: 'flow'
+    #               legacy_redirect_ip_action: 
+    #                 set: true
+    #                 send: true
+    #                 receive: true
+    #     state: merged
+    #--------------------------------------------------------------------------------------------
+    #--------------------------------------------------------------------------------------------
+    # - name: test_junos_bgp_address_family_config_016
+    #   junos_bgp_address_family:
+    #     config:
+    #       address_family:
+    #         - afi: 'inet'
+    #           af_type:
+    #             - type: 'flow'
+    #               loops: 3
+    #     state: merged
+    #--------------------------------------------------------------------------------------------
+    #--------------------------------------------------------------------------------------------
+    # - name: test_junos_bgp_address_family_config_017
+    #   junos_bgp_address_family:
+    #     config:
+    #       address_family:
+    #         - afi: 'inet'
+    #           af_type:
+    #             - type: 'flow'
+    #               no_install: true
+    #     state: merged
+    #--------------------------------------------------------------------------------------------
+    #--------------------------------------------------------------------------------------------
+    # - name: test_junos_bgp_address_family_config_018
+    #   junos_bgp_address_family:
+    #     config:
+    #       address_family:
+    #         - afi: 'inet'
+    #           af_type:
+    #             - type: 'flow'
+    #               no_validate: 'sample'
+    #     state: rendered
+    #--------------------------------------------------------------------------------------------
+    #--------------------------------------------------------------------------------------------
+    # - name: test_junos_bgp_address_family_config_019
+    #   junos_bgp_address_family:
+    #     config:
+    #       address_family:
+    #         - afi: 'inet'
+    #           af_type:
+    #             - type: 'flow'
+    #               output_queue_priority_expedited: true
+    #     state: merged
+    #--------------------------------------------------------------------------------------------
+    #--------------------------------------------------------------------------------------------
+    # - name: test_junos_bgp_address_family_config_020
+    #   junos_bgp_address_family:
+    #     config:
+    #       address_family:
+    #         - afi: 'inet'
+    #           af_type:
+    #             - type: 'flow'
+    #               output_queue_priority_priority: 15
+    #     state: merged
+
+    #--------------------------------------------------------------------------------------------
+    #--------------------------------------------------------------------------------------------
+    # - name: test_junos_bgp_address_family_config_021
+    #   junos_bgp_address_family:
+    #     config:
+    #       address_family:
+    #         - afi: 'inet6'
+    #           af_type:
+    #             - type: 'labeled-unicast'
+    #               per_group_label: true
+    #     state: merged
+    #--------------------------------------------------------------------------------------------
+    #--------------------------------------------------------------------------------------------
+    # - name: test_junos_bgp_address_family_config_022
+    #   junos_bgp_address_family:
+    #     config:
+    #       address_family:
+    #         - afi: 'inet'
+    #           af_type:
+    #             - type: 'labeled-unicast'
+    #               per_prefix_label: true
+    #     state: merged
+    #--------------------------------------------------------------------------------------------
+    #--------------------------------------------------------------------------------------------
+    # - name: test_junos_bgp_address_family_config_023
+    #   junos_bgp_address_family:
+    #     config:
+    #       address_family:
+    #         - afi: 'inet'
+    #           af_type:
+    #             - type: 'labeled-unicast'
+    #               prefix_limit:
+    #                 maximum: 4294967290
+    #                 teardown: true
+    #                 limit_threshold: 22
+    #                 idle_timeout: true
+    #                 idle_timeout_value: 2200
+    #     state: merged
+    #--------------------------------------------------------------------------------------------
+    #--------------------------------------------------------------------------------------------
+    # - name: test_junos_bgp_address_family_config_023_001
+    #   junos_bgp_address_family:
+    #     config:
+    #       address_family:
+    #         - afi: 'inet'
+    #           af_type:
+    #             - type: 'labeled-unicast'
+    #               prefix_limit:
+    #                 teardown: true
+    #                 forever: true
+    #     state: merged
+    #--------------------------------------------------------------------------------------------
+    #--------------------------------------------------------------------------------------------
+    # - name: test_junos_bgp_address_family_config_024
+    #   junos_bgp_address_family:
+    #     config:
+    #       address_family:
+    #         - afi: 'inet'
+    #           af_type:
+    #             - type: 'labeled-unicast'
+    #               resolve_vpn: true 
+    #     state: merged
+    #--------------------------------------------------------------------------------------------
+    #--------------------------------------------------------------------------------------------
+    # - name: test_junos_bgp_address_family_config_025
+    #   junos_bgp_address_family:
+    #     config:
+    #       address_family:
+    #         - afi: 'inet6'
+    #           af_type:
+    #             - type: 'labeled-unicast'
+    #               rib: 'inet.3' 
+    #     state: merged
+    #--------------------------------------------------------------------------------------------
+    #--------------------------------------------------------------------------------------------
+    # - name: test_junos_bgp_address_family_config_026
+    #   junos_bgp_address_family:
+    #     config:
+    #       address_family:
+    #         - afi: 'inet6'
+    #           af_type:
+    #             - type: 'labeled-unicast'
+    #               ribgroup_name: 'inet3' 
+    #     state: rendered
+    #--------------------------------------------------------------------------------------------
+    #--------------------------------------------------------------------------------------------
+    # - name: test_junos_bgp_address_family_config_027
+    #   junos_bgp_address_family:
+    #     config:
+    #       address_family:
+    #         - afi: 'inet6'
+    #           af_type:
+    #             - type: 'labeled-unicast'
+    #               route_refresh_priority_expedited: true 
+    #     state: merged
+    #--------------------------------------------------------------------------------------------
+    #--------------------------------------------------------------------------------------------
+    - name: test_junos_bgp_address_family_config_028
+      junos_bgp_address_family:
+        config:
+          address_family:
+            - afi: 'inet6'
+              af_type:
+                - type: 'labeled-unicast'
+                  route_refresh_priority_priority: 15
+        state: merged
+    #--------------------------------------------------------------------------------------------
+    #--------------------------------------------------------------------------------------------
+    # - name: test_junos_bgp_address_family_config_029
+    #   junos_bgp_address_family:
+    #     config:
+    #       address_family:
+    #         - afi: 'inet'
+    #           af_type:
+    #             - type: 'flow'
+    #               secondary_independent_resolution: true
+    #     state: merged
+    #--------------------------------------------------------------------------------------------
+    #--------------------------------------------------------------------------------------------
+    # - name: test_junos_bgp_address_family_config_030
+    #   junos_bgp_address_family:
+    #     config:
+    #       groups:
+    #         - name: 'ebgp'
+    #           address_family:
+    #             - afi: 'inet'
+    #               af_type:
+    #                 - type: 'unicast'
+    #                   topology:
+    #                     - name: voice
+    #                       community:
+    #                         - 'target:40:40'
+    #     state: merged
+
+
+    #--------------------------------------------------------------------------------------------
+    #--------------------------------------------------------------------------------------------
+    # - name: test_junos_bgp_address_family_config_033
+    #   junos_bgp_address_family:
+    #     config:
+    #       groups:
+    #         - name: 'ebgp'
+    #           neighbors:
+    #             - neighbor_address: "14.14.14.14"
+    #               address_family:
+    #                 - afi: 'inet'
+    #                   af_type:
+    #                     - type: 'unicast' 
+    #                       no_install: true
+    #     state: merged
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            #       accepted_prefix_limit:
+            #         maximum: 20
+            #         limit_threshold: 98
+            #         idle_timeout_value: 2001
+            #       damping: true
+            #       defer_initial_multipath_build:
+            #         maximum_delay: 2
+            # - afi: 'inet'
+            #   af_type:
+            #     - type: 'flow'
+            #       legacy_redirect_ip_action:
+            #         send: true
+            #         receive: true
+            #       loops: 4
+            #       no_install: true
+            #       output_queue_priority_expedited: true
+            #       secondary_independent_resolution: true
+
+            #     - type: 'unicast'
+            #       extended_nexthop: true
+            #       extended_nexthop_color: true
+            #       local_ipv4_address: '9.9.9.9'
+
+            #     - type: 'labeled-unicast'
+            #       entropy_label:
+            #         no_next_hop_validation: true
+            #       explicit_null:
+            #         connected_only: true
+            #       per_prefix_label: true
+            #       per_group_label: true
+            #       prefix_limit:
+            #         maximum: 20
+            #         limit_threshold: 99
+            #         forever: true
+            #       resolve_vpn: true
+            #       rib: 'inet.3'
+            #       route_refresh_priority_expedited: true
+            #       route_refresh_priority_priority: 3
+
+            #     - type: 'any'
+            #       accepted_prefix_limit:
+            #         maximum: 20
+            #         limit_threshold: 99
+            #         idle_timeout_value: 2000
+            #       damping: true
+            #       defer_initial_multipath_build:
+            #         maximum_delay: 2
+            #       delay_route_advertisements:
+            #         max_delay_route_age: 20
+            #         max_delay_routing_uptime: 32000
+            #         min_delay_inbound_convergence: 32000
+            #         min_delay_routing_uptime: 23000
+            #       graceful_restart_forwarding_state_bit: 'from-fib'
+

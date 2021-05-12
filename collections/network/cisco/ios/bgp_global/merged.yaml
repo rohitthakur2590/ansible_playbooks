@@ -1,0 +1,50 @@
+---
+- name: IOS_BGP
+  hosts: ios-lab
+  collections:
+    - cisco.ios.ios
+ 
+  tasks:
+    - name: Configure global BGP with bgp_global
+      cisco.ios.ios_bgp_global:
+        config:
+          as_number: 65000
+          bgp:
+            router_id:
+              address: 192.168.1.1
+          neighbor:
+            - remote_as: 65001
+              ebgp_multihop:
+                hop_count: 255
+        state: merged
+    - name: Configure address_family resource with bgp_address_family resource module
+      cisco.ios.ios_bgp_address_family:
+        config:
+          as_number: 65000
+          address_family:
+            - afi: ipv4
+              redistribute:
+                - ospf:
+                    process_id: 1
+              neighbor:
+                - address: 10.200.200.2
+                  activate: true
+              network:
+                - address: 10.100.100.0
+                  mask: 255.255.255.0
+                - address: 10.200.200.0
+                  mask: 255.255.255.0
+                - address: 172.16.0.0
+                  mask: 255.255.0.0
+                - address: 192.168.1.1
+                  mask: 255.255.255.255
+                - address: 10.25.25.0
+                  mask: 255.255.255.0
+                - address: 10.25.26.0
+                  mask: 255.255.255.0
+        state: merged
+                
+                
+
+      
+          

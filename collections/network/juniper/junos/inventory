@@ -1,0 +1,23 @@
+[junos]
+192.168.122.95
+# 10.8.38.39
+
+
+[junos:vars]
+ansible_network_os = junipernetworks.junos.junos
+# ansible_user = ansible
+# ansible_password = @nsible
+ansible_connection = ansible.netcommon.network_cli
+ansible_network_cli_ssh_type = libssh
+
+
+##ansible_network_os = junipernetworks.junos.junos
+##ansible_user = ansible
+##ansible_password = @nsible
+
+ansible_ssh_user = vagrant
+ansible_ssh_private_key_file = /home/rothakur/.vagrant.d/insecure_private_key
+
+# ansible_connection = ansible.netcommon.netconf
+# ansible_connection = ansible.netcommon.libssh
+# ansible_connection=ansible.netcommon.network_cli

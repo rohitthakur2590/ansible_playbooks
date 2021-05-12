@@ -1,0 +1,28 @@
+---
+- name: Merge playbook
+  hosts: junos
+  collections:
+    - junipernetworks.junos
+
+  tasks:
+    - name: Configure static route for forward instance routing options
+      junos_static_routes:
+        config:
+           - address_families:
+               - afi: ipv4
+                 routes:
+                   - dest: 0.0.0.0/0
+                     next_hop:
+                       - forward_router_address: 172.16.0.20
+             vrf: "rtable102"
+
+    - name: Configure new routing instance with static route for forward instance routing options
+      junos_static_routes:
+        config:
+           - address_families:
+               - afi: ipv4
+                 routes:
+                   - dest: 0.0.0.0/0
+                     next_hop:
+                       - forward_router_address: 172.16.0.20
+             vrf: "rtablenew"

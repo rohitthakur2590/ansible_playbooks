@@ -1,0 +1,20 @@
+- hosts: junos
+  collections:
+    - junipernetworks.junos
+  gather_facts: no
+  # connection: ansible.netcommon.network_cli
+  vars:
+    vars:
+    # ansible_python_interpreter: /home/rothakur/venvs/ansible37/bin/python3.7
+    ansible_network_os: junipernetworks.junos.junos
+    # ansible_user: "vagrant"
+    # ansible_private_key_file: "ansible_ssh_private_key_file = /home/rothakur/.vagrant.d/insecure_private_key"
+  #   ansible_network_cli_ssh_type: libssh
+  tasks:
+  # - name: run show version command
+  #   junipernetworks.junos.junos_interfaces:
+  #     state: gathered
+
+  - name: run show interface command
+    ansible.netcommon.cli_command:
+       command: show interfaces

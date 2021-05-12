@@ -1,0 +1,26 @@
+---
+- name: junos_routing_instance Replaced Operation
+  hosts: junos
+  collections:
+    - junipernetworks.junos
+
+  tasks:
+    - name: Replace routing instance running configuration
+      junos_routing_instances:
+        config:
+          - name: "test"
+            type: "vrf"
+            route_distinguisher: "10.57.255.1:37"
+            vrf_imports:
+              - "test-policy"
+            vrf_exports:
+              - "test-policy"            
+            interfaces:
+              - name: "sp-0/0/0.0"
+              - name: "gr-0/0/0.0"
+            connector_id_advertise: false
+            description: "Configured by Ansible Content Team"
+          - name: "forwardinst"
+            type: "forwarding"
+            description: "Replaced and Configured by Ansible Content Team"
+        state: replaced

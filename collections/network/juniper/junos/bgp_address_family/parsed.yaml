@@ -1,0 +1,10 @@
+---
+- name: Parsed Operation
+  hosts: junos
+  collections:
+    - junipernetworks.junos
+  tasks:
+    - name: Parsed the runing-config
+      junipernetworks.junos.junos_bgp_address_family:
+        running_config: "{{lookup('file', './fixtures/parsed.cfg')}}"
+        state: parsed

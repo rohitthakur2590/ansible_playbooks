@@ -1,0 +1,11 @@
+---
+- name: Parsed Operation
+  hosts: junos
+  collections:
+    - junipernetworks.junos
+
+  tasks:
+    - name: Parsed the provided  configuration as per argspec
+      junos_routing_instances:
+        running_config: "{{ lookup('file', '../fixtures/unit_parsed.cfg') }}"
+        state: parsed 

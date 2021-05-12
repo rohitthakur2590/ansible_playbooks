@@ -1,0 +1,28 @@
+---
+- name: BGP Replaced Unit Test Task
+  hosts: junos
+  collections:
+    - junipernetworks.junos
+  tasks:
+    # - name: Replace running-config BGP global configuration with provided configuration.
+    #   junos_bgp_global:
+    #     config:
+    #       description: "This is configured with Junos_bgp resource module"
+    #       groups:
+    #         - name: internal
+    #           out_delay: 22
+    #       hold_time: 4
+    #       holddown_all_stale_labels: true
+    #       include_mp_next_hop: true
+    #       log_updown: true
+    #       loops: 5
+    #       keep: "all"
+    #       mtu_discovery: true
+    #       out_delay: 10
+    #       preference: '2'
+    #     state: rendered
+    - name: Replace running-config BGP global configuration with provided configuration.
+      junos_bgp_global:
+        config:
+          description: ""
+        state: rendered

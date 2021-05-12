@@ -1,0 +1,12 @@
+---
+- name: BGP address family Unit Test Delete
+  hosts: junos
+  collections:
+    - junipernetworks.junos
+  
+  tasks:
+
+    - name: test_junos_bgp_address_family_config_deleted_001
+      junos_bgp_address_family:
+        config:
+        state: deleted

@@ -1,0 +1,9 @@
+---
+- name: Gather Operation
+  hosts: junos
+  collections:
+    - junipernetworks.junos
+  tasks:
+    - name: Gather static routes from running configuration
+      junos_static_routes:
+        state: gathered

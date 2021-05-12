@@ -1,0 +1,47 @@
+---
+- name: junos_routing_instance Merged Operation
+  hosts: junos
+  collections:
+    - junipernetworks.junos
+
+  tasks:
+    - name: Merge routing table to routing instance running configuration
+      junos_routing_instances:
+        config:
+          - name: "test"
+            type: "vrf"
+            route_distinguisher: "10.58.255.1:37"
+            vrf_imports:
+              - "test-policy"
+            vrf_exports:
+              - "test-policy"            
+              - "test-policy-1"
+            interfaces:
+              - name: "sp-0/0/0.0"
+              - name: "gr-0/0/0.0"
+            connector_id_advertise: true
+          - name: "forwardinst"
+            type: "forwarding"
+            description: "Configured by Ansible Content Team"
+
+        state: merged
+
+# set policy-options policy-statement test-policy term t1 then reject
+# set policy-options policy-statement test-policy-1 term t1 then reject
+
+# set routing-instances test interface sp-0/0/0.0
+# set routing-instances test interface gr-0/0/0.0 
+
+# set routing-instances test instance-type vrf
+# set routing-instances test route-distinguisher 10.58.255.1:37
+# set routing-instances test vrf-import test-policy
+# set routing-instances test vrf-export test-policy
+# set routing-instances test vrf-export test-policy-1
+
+# set routing-instances test connector-id-advertise
+
+# set routing-instances vtest1 instance-type virtual-router
+# set routing-instances vtest2 instance-type virtual-router
+
+  
+

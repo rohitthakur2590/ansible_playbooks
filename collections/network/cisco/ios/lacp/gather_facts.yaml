@@ -1,0 +1,11 @@
+---
+- name: Gather facts Operation
+  hosts: ios-lab
+  collections:
+    - cisco.ios.ios
+
+  tasks:
+    - name: Gather facts
+      cisco.ios.ios_facts:
+        gather_subset:
+          - all 

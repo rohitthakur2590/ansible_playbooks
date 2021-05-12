@@ -1,0 +1,11 @@
+---
+- name: Remove Complete BGP resource
+  hosts: junos
+  collections:
+    - junipernetworks.junos
+  
+  tasks:
+    - name: Purge BGP resource 
+      junos_bgp_global:
+        config:
+        state: purged

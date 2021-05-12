@@ -1,0 +1,61 @@
+STEPS TO GENERATE CODE COVERAGE REPORT
+  (a) Switch to a venv with Python 3.8
+  (b) cd to target collection root
+  (c) ansible-test coverage erase
+  (d) ansible-test units --python 3.8 --coverage
+  (e) ansible-test coverage report
+
+
+
+Important links:
+
+Understand how netconf delete workd at attribute level:
+    - https://www.juniper.net/documentation/us/en/software/junos/netconf/topics/task/netconf-configuration-elements-deleting.html#:~:text=In%20a%20NETCONF%20session%20with,XML%20protocol
+
+Example: Virtual Routing and Forwarding (VRF) and Service Configuration
+    - https://www.juniper.net/documentation/en_US/junos/topics/example/vpn-routing-forwarding-vrf-service-configuring.html
+
+How to Run Ansible Integration Tests:
+  - ansible-test network-integration --inventory test-inventory junos_bgp_address_family -vvv
+
+How to Run Ansible Unit Tests:
+  - ansible-test units tests/unit/modules/network/junos/test_junos_bgp_address_family.py --python 3.6 -vvv
+
+NETCONF CLI EXECUTION:
+  - How to connect with Netconf:
+      - ssh -i /home/rothakur/.vagrant.d/insecure_private_key -p 830 vagrant@192.168.122.95 -s netconf
+  - Capabilities:
+      <hello xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+        <capabilities>
+          <capability>urn:ietf:params:netconf:base:1.0</capability>
+          <capability>urn:ietf:params:netconf:capability:candidate:1.0</capability>
+          <capability>urn:ietf:params:netconf:capability:confirmed-commit:1.0</capability>
+          <capability>urn:ietf:params:netconf:capability:validate:1.0</capability>
+          <capability>urn:ietf:params:netconf:capability:url:1.0?scheme=http,ftp,file</capability>
+          <capability>urn:ietf:params:xml:ns:netconf:base:1.0</capability>
+          <capability>urn:ietf:params:xml:ns:netconf:capability:candidate:1.0</capability>
+          <capability>urn:ietf:params:xml:ns:netconf:capability:confirmed-commit:1.0</capability>
+          <capability>urn:ietf:params:xml:ns:netconf:capability:validate:1.0</capability>
+          <capability>urn:ietf:params:xml:ns:netconf:capability:url:1.0?protocol=http,ftp,file</capability>
+          <capability>urn:ietf:params:xml:ns:yang:ietf-netconf-monitoring</capability>
+          <capability>http://xml.juniper.net/netconf/junos/1.0</capability>
+          <capability>http://xml.juniper.net/dmi/system/1.0</capability>
+        </capabilities>
+      </hello>
+      ]]>]]>
+  
+  - RPC message get:
+      <rpc>
+      <get [format=" xml)"]>
+      </get>
+      </rpc>
+      ]]>]]>
+
+
+
+
+  - ATTRIBUTES
+
+      topology:
+      - https://www.juniper.net/documentation/en_US/crpd/topics/example/configure-multitopology-crpd.html
+

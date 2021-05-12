@@ -1,0 +1,10 @@
+Important_links:
+   - https://www.youtube.com/watch?v=qrcj7sVuvUA
+
+Docstring :
+  Description: "A docstring is a string literal that occurs as the first statement in a module, function, classs, or method definition. (PEP-257)"
+
+  Example: 
+    def hello_world():
+    """Prints 'Hello world!' ."""
+    print('Hello world!') 

@@ -1,0 +1,58 @@
+ render_config: 
+      conf={'instance': {'instance-type': 'forwarding', 'name': 'rtable1'}}
+
+ render_config:
+      conf={'instance': [{'instance-type': 'forwarding', 'name': 'rtable1'},
+              {'instance-type': 'forwarding', 'name': 'rtable22'}]}
+
+
+
+
+############################################### CLI COMMANDS #########################################
+set routing-instances rtable1 instance-type forwarding 
+set routing-instances rtable22 instance-type forwarding   
+set routing-instances rtable22 description "Routing table for inbound filter"
+set routing-instances rtable22 instance-role access 
+
+
+
+
+ERROR:
+vagrant@vsrx# set routing-instances rtable22 connector-id-advertise                                                 
+
+[edit]
+vagrant@vsrx# commit 
+[edit routing-instances]
+  'rtable22'
+    RT Instance: connector-id-advertise can only beconfigured for vrf instances: rtable22
+
+[edit routing-instances rtable1]
+  'no-irb-layer-2-copy'
+    routing-interface/l3-interface must be configured for this feature
+error: commit failed: (statements constraint check failed)
+
+vagrant@vsrx# commit 
+[edit routing-instances rtable1]
+  'no-local-switching'
+    'no-local-switching' statement can be configured only for VPLS instances
+error: commit failed: (statements constraint check failed)
+
+
+[edit]
+vagrant@vsrx# commit 
+[edit routing-instances]
+  'rtable1'
+    RT Instance: vrf-advertise can only beconfigured for vrf instances: rtable1
+error: configuration check-out failed
+
+
+[edit]
+vagrant@vsrx# commit 
+[edit routing-instances rtable1]
+  'qualified-bum-pruning-mode'
+    'bum-pruning-mode' statement can be configured only for VPLS instances!
+error: commit failed: (statements constraint check failed)
+
+
+
+

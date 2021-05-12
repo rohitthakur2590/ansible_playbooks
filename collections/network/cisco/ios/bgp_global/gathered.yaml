@@ -1,0 +1,17 @@
+---
+- name: Gather Facts
+  hosts: ios-lab
+  gather_facts: false
+  collections:
+    - cisco.ios.ios
+
+  tasks:
+    - name: Use the bgp_global resource module to gather the current config
+      cisco.ios.ios_bgp_global:
+        state: gathered
+      register: bgp_global
+    
+    - name: Gather operation
+      cisco.ios.ios_bgp_address_family:
+        state: gathered
+      register: bgp_address_family

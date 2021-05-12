@@ -1,0 +1,25 @@
+---
+- name: Fetch List Availabe resource Modules
+  hosts: nxos-lab
+  gather_facts: no
+  collections:
+    - cisco.nxos
+  
+  tasks:
+    - name: Get list of avaliable network resources for Cisco nxos
+      register: result
+      nxos_facts:
+         available_network_resources: true
+         gather_network_resources: "all"
+
+    - name: Print result
+      debug:
+        msg: "{{ result['ansible_facts']['ansible_net_gather_network_resources'] }}" 
+
+    - name: Assert that correct available_resources_list returned
+      assert:
+        that:
+          - result.changed == false
+          - "{{ result['ansible_facts']['available_network_resources'] | symmetric_difference(result['ansible_facts']['ansible_net_gather_network_resources']) |length\
+              \ == 0 }}"
+

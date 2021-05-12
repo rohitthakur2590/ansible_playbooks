@@ -1,0 +1,14 @@
+---
+- name: Gather Facts
+  hosts: ios-lab
+  gather_facts: false
+  collections:
+    - cisco.ios.ios
+
+  tasks:
+    - name: Use the ios_lacp resource module to gather the current config
+      cisco.ios.ios_lacp:
+        state: gathered
+      register: lacp_facts
+    
+ 

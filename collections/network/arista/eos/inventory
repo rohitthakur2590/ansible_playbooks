@@ -1,0 +1,8 @@
+[eos-lab]
+10.8.38.31
+
+[eos-lab:vars]
+ansible_network_os = arista.eos.eos
+ansible_ssh_user = ansible
+ansible_ssh_pass = ansible
+ansible_connection=ansible.netcommon.network_cli

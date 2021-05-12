@@ -1,0 +1,85 @@
+---
+- name: Fetch List Availabe resource Modules
+  hosts: ios-lab
+  gather_facts: no
+  collections:
+    - cisco.ios.ios
+  
+  tasks:
+    - name: Get list of avaliable network resources for Cisco ios
+      register: result
+      cisco.ios.ios_facts:
+         available_network_resources: true
+        #  gather_network_resources: all
+
+    # - name: Print result
+    #   debug:
+    #     msg: "{{ result['ansible_facts']['ansible_net_gather_network_resources'] }}" 
+
+    - set_fact: 
+        supported_network_resources:
+          - interfaces
+          - l2_interfaces
+          - vlans
+          - lag_interfaces
+          - lacp
+          - lacp_interfaces
+          - lldp_global
+          - lldp_interfaces
+          - l3_interfaces
+          - acl_interfaces
+          - static_routes
+          - acls
+          - ospfv2
+          - ospfv3
+          - ospf_interfaces
+          - bgp_global
+          - bgp_address_family
+
+# "acl_interfaces",
+#             "acls",
+#             "bgp_address_family",
+#             "bgp_global",
+#             "interfaces",
+#             "l2_interfaces",
+#             "l3_interfaces",
+#             "lacp",
+#             "lacp_interfaces",
+#             "lag_interfaces",
+#             "lldp_global",
+#             "lldp_interfaces",
+#             "ospf_interfaces",
+#             "ospfv2",
+#             "ospfv3",
+#             "static_routes",
+            # "vlans"
+
+    - name: Assert that correct available_resources_list returned
+      assert:
+        that:
+          - result.changed == false
+          - "'acls' in result['ansible_facts']['available_network_resources']"
+          - "'bgp_address_family' in result['ansible_facts']['available_network_resources']"
+          - "'bgp_global' in result['ansible_facts']['available_network_resources']"
+          - "'interfaces' in result['ansible_facts']['available_network_resources']"
+          - "'l2_interfaces' in result['ansible_facts']['available_network_resources']"
+          - "'l3_interfaces' in result['ansible_facts']['available_network_resources']"
+          - "'lacp' in result['ansible_facts']['available_network_resources']"
+          - "'lacp_interfaces' in result['ansible_facts']['available_network_resources']"
+          - "'lldp_global' in result['ansible_facts']['available_network_resources']"
+          - "'lldp_interfaces' in result['ansible_facts']['available_network_resources']"
+          - "'ospf_interfaces' in result['ansible_facts']['available_network_resources']"
+          - "'ospfv2' in result['ansible_facts']['available_network_resources']"
+          - "'ospfv3' in result['ansible_facts']['available_network_resources']"
+          - "'static_routes' in result['ansible_facts']['available_network_resources']"
+          - "'vlans' in result['ansible_facts']['available_network_resources']"
+
+
+
+    # - name: Assert that correct available_resources_list returned
+    #   assert:
+    #     that:
+    #       - result.changed == false
+    #       - "{{ result['ansible_facts']['available_network_resources'] | symmetric_difference(supported_network_resources) |length\
+    #           \ == 0 }}"
+

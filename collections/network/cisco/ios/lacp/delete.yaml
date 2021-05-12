@@ -1,0 +1,15 @@
+---
+- name: IOS_BGP
+  hosts: ios-lab
+  collections:
+    - cisco.ios.ios
+ 
+  tasks:
+    - name: Delete Global LACP attribute
+      cisco.ios.ios_lacp:
+        state: deleted
+                
+                
+
+      
+          
